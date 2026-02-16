@@ -11,10 +11,15 @@ export const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const name = searchParams.get("name") ?? undefined;
 
-  const { data: searchCharacters, isLoading } = useQuery({
+  const {
+    data: searchCharacters,
+    isLoading,
+    isFetched,
+  } = useQuery({
     queryKey: ["search", { name }],
     queryFn: () => searchCharacterAction(name),
     staleTime: 1000 * 60 * 5,
+    enabled: !!name,
   });
 
   const handleKeyDown = (event) => {
@@ -60,7 +65,14 @@ export const SearchPage = () => {
           </div>
         </div>
 
-        {isLoading || (searchCharacters && searchCharacters.length > 0) ? (
+        {!name ? (
+          <div className="text-center py-20 border-2 border-dashed border-gray-200 dark:border-white/5 rounded-2xl mx-5">
+            <span className="text-gray-500 dark:text-gray-400">
+              Comienza tu búsqueda escribiendo en el cuadro de arriba.
+            </span>
+          </div>
+        ) : isLoading ||
+          (isFetched && searchCharacters && searchCharacters.length > 0) ? (
           <CharacterGrid characters={searchCharacters} isLoading={isLoading} />
         ) : (
           <div className="text-center py-20">
