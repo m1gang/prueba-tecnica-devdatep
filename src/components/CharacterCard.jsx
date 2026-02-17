@@ -14,7 +14,7 @@ export const CharacterCard = ({ character }) => {
 
   // Define full Tailwind class sets for each race to ensure they are picked up by the compiler
 
-  const styles = raceStyles[race] || raceStyles["Saiyan"];
+  const styles = raceStyles[race] || raceStyles["Other"];
 
   return (
     <div
