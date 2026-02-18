@@ -7,6 +7,7 @@ import { BrowserRouter, Route, RouterProvider, Routes } from 'react-router';
 import { CharacterPage } from './pages/CharacterPage';
 import { SearchPage } from './pages/SearchPage';
 import { appRouter } from './router/app.routes';
+import { Toaster } from 'sileo';
 
 const queryClient = new QueryClient();
 
@@ -14,6 +15,10 @@ function App() {
 
   return (
     <>
+      <Toaster position="top-right" options={{
+        fill: "#171717",
+        styles: { description: "text-white/75!" },
+      }} />
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={appRouter} />
         <ReactQueryDevtools initialIsOpen={false} />
