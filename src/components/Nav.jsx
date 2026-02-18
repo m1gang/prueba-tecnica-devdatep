@@ -24,7 +24,7 @@ export const Nav = () => {
                 </NavLink>
                 <NavLink
                   className={({ isActive }) => isActive && "active"}
-                  to="/planetas"
+                  to="/planets"
                 >
                   Planetas
                 </NavLink>

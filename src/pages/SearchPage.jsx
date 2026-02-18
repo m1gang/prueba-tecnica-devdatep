@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { Nav } from "../components/Nav";
 import { useSearchParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { searchCharacterAction } from "../actions/search-characters.action";
@@ -34,7 +33,7 @@ export const SearchPage = () => {
 
   return (
     <div className="bg-background-light dark:bg-background-dark min-h-screen">
-      <Nav />
+
       <div className="flex justify-center items-center gap-5">
         <h1 className="mt-5 text-center text-5xl font-clash font-black pb-5">
           Página de búsqueda

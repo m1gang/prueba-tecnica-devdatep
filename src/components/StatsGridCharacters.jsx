@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-export const StatsGrid = () => {
+export const StatsGridCharacters = ({ data }) => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <div className="relative overflow-hidden bg-white dark:bg-card-dark rounded-xl p-6 shadow-lg border border-gray-100 dark:border-white/5 group hover:border-primary/50 transition-colors duration-300">
@@ -11,9 +11,8 @@ export const StatsGrid = () => {
                             Personajes
                         </p>
                         <h3 className="text-4xl font-black text-gray-900 dark:text-white">
-                            58
+                            {data?.totalItems}
                         </h3>
-
                     </div>
                     <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
                         <span className="material-icons text-2xl">groups</span>
@@ -28,9 +27,8 @@ export const StatsGrid = () => {
                             Razas
                         </p>
                         <h3 className="text-4xl font-black text-gray-900 dark:text-white">
-                            13
+                            {data?.totalRaces || 0}
                         </h3>
-
                     </div>
                     <div className="w-12 h-12 bg-accent-yellow/20 rounded-lg flex items-center justify-center text-accent-yellow">
                         <span className="material-icons text-2xl">bolt</span>
@@ -45,9 +43,8 @@ export const StatsGrid = () => {
                             Afiliaciones
                         </p>
                         <h3 className="text-4xl font-black text-gray-900 dark:text-white">
-                            8
+                            {data?.totalAffiliations || 0}
                         </h3>
-
                     </div>
                     <div className="w-12 h-12 bg-accent-blue/20 rounded-lg flex items-center justify-center text-accent-blue">
                         <span className="material-icons text-2xl">public</span>
@@ -55,5 +52,5 @@ export const StatsGrid = () => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
