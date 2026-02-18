@@ -4,36 +4,37 @@ import { HomePage } from "../pages/HomePage";
 import { CharacterPage } from "../pages/CharacterPage";
 import { SearchPage } from "../pages/SearchPage";
 import { PlanetPage } from "../pages/PlanetPage";
+import { SuggestPage } from "../pages/SuggestPage";
 
 export const appRouter = createBrowserRouter([
     {
-        path: '/',
+        path: "/",
         element: <DBLayout />,
         children: [
             {
                 index: true,
-                element: <HomePage />
+                element: <HomePage />,
             },
             {
-                path: 'character/:id',
-                element: <CharacterPage />
+                path: "character/:id",
+                element: <CharacterPage />,
             },
             {
-                path: 'search',
-                element: <SearchPage />
+                path: "search",
+                element: <SearchPage />,
             },
             {
-                path: 'planets',
-                element: <PlanetPage />
+                path: "planets",
+                element: <PlanetPage />,
             },
             {
-                path: '*',
-                element: <Navigate to='/' />
-            }
-
+                path: "suggest",
+                element: <SuggestPage />,
+            },
+            {
+                path: "*",
+                element: <Navigate to="/" />,
+            },
         ],
     },
-
-
-
-])
+]);

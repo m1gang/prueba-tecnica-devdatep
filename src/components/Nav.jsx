@@ -34,6 +34,12 @@ export const Nav = () => {
                 >
                   Búsqueda
                 </NavLink>
+                <NavLink
+                  className={({ isActive }) => isActive && "active"}
+                  to="/suggest"
+                >
+                  Sugerencia
+                </NavLink>
               </div>
             </div>
             {/* <div className="hidden md:flex items-center gap-4">
