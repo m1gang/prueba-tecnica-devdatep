@@ -15,10 +15,7 @@ function App() {
 
   return (
     <>
-      <Toaster position="top-right" options={{
-        fill: "#171717",
-        styles: { description: "text-white/75!" },
-      }} />
+      <Toaster position="top-center" />
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={appRouter} />
         <ReactQueryDevtools initialIsOpen={false} />

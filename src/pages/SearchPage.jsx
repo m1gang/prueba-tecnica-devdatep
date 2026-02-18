@@ -31,6 +31,14 @@ export const SearchPage = () => {
     }
   };
 
+  const handleClick = () => {
+    const value = inputRef.current?.value ?? "";
+    setSearchParams((prev) => {
+      prev.set("name", value);
+      return prev;
+    });
+  }
+
   return (
     <div className="bg-background-light dark:bg-background-dark min-h-screen">
 
@@ -45,24 +53,32 @@ export const SearchPage = () => {
             <span className="w-2 h-8 bg-primary rounded-full"></span>
             Filtros
           </h2>
+
         </div>
-        <div className="hidden md:flex items-center gap-4">
-          <div className="relative m-5">
-            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-              <span className="material-icons text-gray-400 text-lg">
-                search
-              </span>
-            </span>
+        <div class="relative group max-w-2xl mx-auto mb-10">
+          <div class="absolute -inset-1 bg-linear-to-r from-primary to-orange-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+          <div class="relative flex items-center bg-white dark:bg-[#32281e] rounded-lg shadow-xl ring-1 ring-slate-900/5 dark:ring-white/10">
+            <div class="pl-4 text-slate-400 dark:text-slate-500">
+              <span class="material-icons text-2xl">search</span>
+            </div>
             <input
               ref={inputRef}
-              className="w-64 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-gray-100 text-sm rounded-full focus:ring-primary focus:border-primary block pl-10 p-2.5 placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-200 focus:w-80"
-              placeholder="Buscar personajes..."
+              class="w-full bg-transparent border-0 py-4 pl-3 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-0 sm:text-lg font-medium"
+              placeholder="Busca personajes (ejem. Goku, Frieza, Bulma)..."
               type="text"
               onKeyDown={(event) => handleKeyDown(event)}
               defaultValue={searchParams.get("name") ?? ""}
             />
+
+            <button
+              class="bg-primary hover:bg-orange-600 text-white px-6 py-2.5 m-1.5 rounded-md font-semibold shadow-lg shadow-orange-500/30 transition-all active:scale-95"
+              onClick={handleClick}
+            >
+              Search
+            </button>
           </div>
         </div>
+
 
         {!name ? (
           <div className="text-center py-20 border-2 border-dashed border-gray-200 dark:border-white/5 rounded-2xl mx-5">

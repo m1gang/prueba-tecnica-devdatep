@@ -1,10 +1,6 @@
 import z from "zod";
 
 export const userSchema = z.object({
-  name: z.string()
-    .min(3, { message: "El nombre debe tener al menos 3 caracteres" })
-    .max(100, { message: "El nombre debe tener menos de 100 caracteres" }),
-  email: z.string().email({ message: "El correo no es válido" }),
   nameCharacter: z.string()
     .min(3, { message: "El nombre del personaje debe tener al menos 3 caracteres" })
     .max(100, { message: "El nombre del personaje debe tener menos de 100 caracteres" }),

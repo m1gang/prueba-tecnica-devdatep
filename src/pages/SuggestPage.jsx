@@ -3,243 +3,260 @@ import silueta from "../assets/svg/silueta.svg";
 import { useForm } from "react-hook-form";
 import { userSchema } from "../validations/userSchema";
 import { sileo } from "sileo";
+import { CheckSymbol } from "../components/CheckSymbol";
 
 export const SuggestPage = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm({
-    resolver: zodResolver(userSchema),
-    defaultValues: { ki: 0 },
-  });
+    const {
+        register,
+        handleSubmit,
+        watch,
+        reset,
+        formState: { errors },
+    } = useForm({
+        resolver: zodResolver(userSchema),
+        defaultValues: { ki: 0 },
+    });
 
-  const ki = watch("ki");
+    // eslint-disable-next-line react-hooks/incompatible-library
+    const ki = watch("ki");
 
-  return (
-    <div className="bg-background-light dark:bg-background-dark min-h-screen">
-      <div className="flex justify-center items-center gap-5">
-        <h1 className="mt-5 text-center text-5xl font-clash font-black pb-5">
-          Sugerencia de Personaje
-        </h1>
-      </div>
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
-        <div className="mb-8 gap-4">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-            <span className="w-2 h-8 bg-primary rounded-full"></span>
-            Formulario
-          </h2>
-          <form
-            onSubmit={handleSubmit(() => {
-              sileo.success({
-                title: "Datos enviados correctamente",
-                description: "Gracias por su sugerencia",
-              });
-              reset();
-            })}
-            className="mt-5 bg-black/10 grid grid-cols-3 p-8 rounded-md text-white gap-3 backdrop-blur-xl shadow-sm shadow-white/20"
-          >
-            <div className="grid col-start-1 col-end-2 p-5">
-              <img className="invert" src={silueta} alt="silueta" />
+    return (
+        <div className="bg-background-light dark:bg-background-dark min-h-screen">
+            <div className="flex flex-col justify-center items-center ">
+                <h1 className="mt-5 text-center text-5xl font-clash font-black ">
+                    Sugerencia de Personaje
+                </h1>
+                <span
+                    className="inline-flex items-center gap-2 px-4 py-1.5 bg-orange-500/10 border border-orange-500/20 text-primary text-xs font-black tracking-widest uppercase rounded-full mb-6">
+                    <span className="relative flex h-2 w-2">
+                        <span
+                            className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                    </span>
+                    Contribución de la comunidad
+                </span>
             </div>
-            <div className="grid col-start-2 col-end-4 items-center p-5">
-              <h1 className="font-bold text-3xl pl-2 text-center text-orange-500">
-                Datos del remitente
-              </h1>
-              <div className="flex gap-5">
-                <div className="flex flex-col w-full">
-                  <label htmlFor="name" className="mb-1 text-sm  text-white/80">
-                    Nombre
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full bg-black/40 rounded-md py-3 px-4 focus:border-orange-500"
-                    placeholder="Ingrese su nombre"
-                    id="name"
-                    name="name"
-                    {...register("name")}
-                  />
-                  {errors.name && (
-                    <span className="text-red-500 text-xs mt-1">
-                      {errors.name.message}
-                    </span>
-                  )}
-                </div>
-                <div className="flex flex-col w-full">
-                  <label
-                    htmlFor="email"
-                    className="mb-1 text-sm  text-white/80"
-                  >
-                    Correo
-                  </label>
-                  <input
-                    type="email"
-                    className="w-full bg-black/40 rounded-md py-3 px-4 focus:border-orange-500"
-                    placeholder="Ingrese su email"
-                    id="email"
-                    name="email"
-                    {...register("email")}
-                  />
-                  {errors.email && (
-                    <span className="text-red-500 text-xs mt-1">
-                      {errors.email.message}
-                    </span>
-                  )}
-                </div>
-              </div>
-              <h1 className="font-bold text-3xl pl-2 text-center text-orange-500">
-                Datos del personaje
-              </h1>
-              <div className="flex gap-5">
-                <div className="flex flex-col w-full">
-                  <label
-                    htmlFor="nameCharacter"
-                    className="mb-1 text-sm  text-white/80"
-                  >
-                    Nombre de personaje
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full bg-black/40 rounded-md py-3 px-4 focus:border-orange-500"
-                    placeholder="Ingrese su nombre"
-                    id="nameCharacter"
-                    name="nameCharacter"
-                    {...register("nameCharacter")}
-                  />
-                  {errors.nameCharacter && (
-                    <span className="text-red-500 text-xs mt-1">
-                      {errors.nameCharacter.message}
-                    </span>
-                  )}
-                </div>
-                <div className="flex flex-col w-full">
-                  <label htmlFor="race" className="mb-1 text-sm  text-white/80">
-                    Raza
-                  </label>
-                  <select
-                    id="race"
-                    name="race"
-                    className="bg-black/50 rounded-md py-3 px-4 flex-2"
-                    {...register("race")}
-                  >
-                    <option value="saiyan">Saiyan</option>
-                    <option value="human">Human</option>
-                  </select>
-                  {errors.race && (
-                    <span className="text-red-500 text-xs mt-1">
-                      {errors.race.message}
-                    </span>
-                  )}
-                </div>
-              </div>
-              <div className="flex flex-col flex-1">
-                <label htmlFor="genre" className="mb-1 text-sm text-white/80">
-                  Género
-                </label>
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+                <div className="mb-8 gap-4">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                        <span className="w-2 h-8 bg-primary rounded-full"></span>
+                        Formulario
+                    </h2>
 
-                <div className="flex gap-2">
-                  <label className="flex-1">
-                    <input
-                      type="radio"
-                      name="genre"
-                      id="genre"
-                      value="male"
-                      className="peer hidden"
-                      {...register("genre")}
-                    />
-                    <div className="bg-black/50 peer-checked:opacity-100 opacity-50  flex justify-center items-center py-3 rounded-md cursor-pointer select-none transition-opacity">
-                      Masculino
-                    </div>
-                  </label>
+                    <div className="glass-card rounded-4xl p-8 md:p-14 mt-5  bg-black/10 text-white gap-3 backdrop-blur-xl shadow-sm shadow-white/20">
+                        <form
+                            onSubmit={handleSubmit(() => {
+                                sileo.success({
+                                    title: "Datos enviados correctamente",
+                                    description: "Gracias por su sugerencia",
+                                    fill: "white",
+                                    icon: <CheckSymbol className="fill-orange-500" />,
+                                    styles: {
+                                        title: "text-orange-500!",
+                                        description: "text-black/75!",
+                                        badge: "bg-orange-500/20!",
+                                        button: "bg-orange-500/10! hover:bg-orange-500/15!",
+                                    },
+                                });
+                                reset();
+                            })}
+                            className="space-y-10 grid grid-cols-3"
+                        >
+                            <div className="grid col-start-1 col-end-2 p-15">
+                                <img className="fill-orange-500" src={silueta} alt="silueta" />
+                            </div>
+                            <div className="grid col-start-2 col-end-4 items-center p-5">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                    <div className="space-y-3">
+                                        <label className="text-xs font-bold text-white/50 uppercase tracking-[0.2em] flex items-center gap-2">
+                                            <span className="material-symbols-outlined text-orange-500 text-sm">
+                                                person
+                                            </span>
+                                            Nombre del personaje
+                                        </label>
+                                        <input
+                                            {...register("nameCharacter")}
+                                            className="w-full bg-[#2C1E12]/40 border-white/5 rounded-xl p-4 text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-white/20 font-medium"
+                                            placeholder="Ingresa nombre del personaje..."
+                                            type="text"
+                                        />
+                                        {errors.nameCharacter && (
+                                            <span className="text-red-500 text-xs mt-1">
+                                                {errors.nameCharacter.message}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <div className="space-y-3">
+                                        <label className="text-xs font-bold text-white/50 uppercase tracking-[0.2em] flex items-center gap-2">
+                                            <span className="material-symbols-outlined text-orange-500 text-sm">
+                                                diversity_3
+                                            </span>
+                                            Raza Guerrera
+                                        </label>
+                                        <div className="relative">
+                                            <select
+                                                {...register("race")}
+                                                className="w-full appearance-none bg-[#2C1E12]/40 border-white/5 rounded-xl p-4 text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all font-medium"
+                                            >
+                                                <option className="bg-[#1A120B]" value="saiyan">
+                                                    Saiyan
+                                                </option>
+                                                <option className="bg-[#1A120B]" value="namekian">
+                                                    Namekian
+                                                </option>
+                                                <option className="bg-[#1A120B]" value="android">
+                                                    Android
+                                                </option>
+                                                <option className="bg-[#1A120B]" value="majin">
+                                                    Majin
+                                                </option>
+                                                <option className="bg-[#1A120B]" value="frieza">
+                                                    Frieza Race
+                                                </option>
+                                                <option className="bg-[#1A120B]" value="human">
+                                                    Human
+                                                </option>
+                                                <option className="bg-[#1A120B]" value="deity">
+                                                    Angel / Deity
+                                                </option>
+                                            </select>
+                                            <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/40">
+                                                expand_more
+                                            </span>
+                                        </div>
+                                        {errors.race && (
+                                            <span className="text-red-500 text-xs mt-1">
+                                                {errors.race.message}
+                                            </span>
+                                        )}
+                                    </div>
+                                </div>
+                                <div className="space-y-4">
+                                    <label className="text-xs font-bold text-white/50 uppercase tracking-[0.2em] flex items-center gap-2">
+                                        <span className="material-symbols-outlined text-orange-500 text-sm">
+                                            wc
+                                        </span>
+                                        Género
+                                    </label>
+                                    <div className="flex flex-wrap gap-4">
+                                        <label className="relative flex-1 min-w-35 cursor-pointer group">
+                                            <input
+                                                {...register("genre")}
+                                                className="peer sr-only"
+                                                name="genre"
+                                                type="radio"
+                                                value="male"
+                                            />
+                                            <div className="w-full p-4 text-center rounded-xl border border-white/5 bg-[#2C1E12]/30 text-white/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white peer-checked:font-bold transition-all hover:bg-white/5">
+                                                Masculino
+                                            </div>
+                                        </label>
+                                        <label className="relative flex-1 min-w-35 cursor-pointer group">
+                                            <input
+                                                {...register("genre")}
+                                                className="peer sr-only"
+                                                name="genre"
+                                                type="radio"
+                                                value="female"
+                                            />
+                                            <div className="w-full p-4 text-center rounded-xl border border-white/5 bg-[#2C1E12]/30 text-white/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white peer-checked:font-bold transition-all hover:bg-white/5">
+                                                Femenino
+                                            </div>
+                                        </label>
+                                        <label className="relative flex-1 min-w-35 cursor-pointer group">
+                                            <input
+                                                {...register("genre")}
+                                                className="peer sr-only"
+                                                name="genre"
+                                                type="radio"
+                                                value="other"
+                                            />
+                                            <div className="w-full p-4 text-center rounded-xl border border-white/5 bg-[#2C1E12]/30 text-white/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white peer-checked:font-bold transition-all hover:bg-white/5">
+                                                Otro
+                                            </div>
+                                        </label>
+                                    </div>
+                                    {errors.genre && (
+                                        <span className="text-red-500 text-xs mt-1">
+                                            {errors.genre.message}
+                                        </span>
+                                    )}
+                                </div>
+                                <div className="space-y-6">
+                                    <div className="flex justify-between items-end">
+                                        <label className="text-xs font-bold text-white/50 uppercase tracking-[0.2em] flex items-center gap-2">
+                                            <span className="material-symbols-outlined text-orange-500 text-sm">
+                                                bolt
+                                            </span>
+                                            Nivel de ki estimado
+                                        </label>
+                                        <span className="text-primary font-black text-2xl italic tracking-tighter drop-shadow-[0_0_10px_rgba(242,127,13,0.3)]">
+                                            {Number(ki).toLocaleString()}
+                                        </span>
+                                    </div>
+                                    <div className="relative py-2">
+                                        <input
+                                            {...register("ki", { valueAsNumber: true })}
+                                            className="w-full h-2 bg-white/5 rounded-full appearance-none cursor-pointer accent-primary"
+                                            max="100000000"
+                                            min="0"
+                                            step="1000"
+                                            type="range"
+                                        />
+                                        <div className="flex justify-between mt-3 text-[10px] text-white/30 uppercase tracking-[0.2em] font-black">
+                                            <span>Civilian</span>
+                                            <span>Legendary Warrior</span>
+                                        </div>
+                                        {errors.ki && (
+                                            <span className="text-red-500 text-xs mt-1">
+                                                {errors.ki.message}
+                                            </span>
+                                        )}
+                                    </div>
+                                </div>
+                                <div className="space-y-3">
+                                    <label className="text-xs font-bold text-white/50 uppercase tracking-[0.2em] flex items-center gap-2">
+                                        <span className="material-symbols-outlined text-orange-500 text-sm">
+                                            history_edu
+                                        </span>
+                                        Descripcion del personaje
+                                    </label>
+                                    <textarea
+                                        {...register("desc")}
+                                        className="w-full bg-[#2C1E12]/40 border-white/5 rounded-xl p-5 text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-white/20 resize-none font-medium leading-relaxed"
+                                        placeholder="Chronicle their origins, techniques, and most notable battles..."
+                                        rows="6"
+                                    ></textarea>
+                                    {errors.desc && (
+                                        <span className="text-red-500 text-xs mt-1">
+                                            {errors.desc.message}
+                                        </span>
+                                    )}
+                                </div>
 
-                  <label className="flex-1">
-                    <input
-                      type="radio"
-                      name="genre"
-                      id="genre"
-                      value="female"
-                      className="peer hidden"
-                      {...register("genre")}
-                    />
-                    <div className="bg-black/50 peer-checked:opacity-100 opacity-50  flex justify-center items-center py-3 rounded-md cursor-pointer select-none transition-opacity">
-                      Femenino
+                                <div className="pt-8 flex flex-col sm:flex-row gap-5">
+                                    <button
+                                        onClick={() => reset()}
+                                        className="flex-1 order-2 sm:order-1 px-8 py-5 rounded-xl bg-white/5 text-white/70 font-bold hover:bg-white/10 transition-all border border-white/5 uppercase tracking-widest text-xs"
+                                        type="button"
+                                    >
+                                        Reiniciar
+                                    </button>
+                                    <button
+                                        className="flex-2 order-1 sm:order-2 px-8 py-5 rounded-xl bg-primary text-white font-black uppercase tracking-[0.15em] hover:bg-orange-600 hover:shadow-[0_0_30px_rgba(242,127,13,0.5)] active:scale-[0.98] transition-all flex items-center justify-center gap-3 group"
+                                        type="submit"
+                                    >
+                                        <span>Enviar personaje</span>
+                                        <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
+                                            send
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                  </label>
-                  <label className="flex-1">
-                    <input
-                      type="radio"
-                      name="genre"
-                      id="genre"
-                      value="other"
-                      className="peer hidden"
-                      {...register("genre")}
-                    />
-                    <div className="bg-black/50 peer-checked:opacity-100 opacity-50  flex justify-center items-center py-3 rounded-md cursor-pointer select-none transition-opacity">
-                      Otro
-                    </div>
-                  </label>
                 </div>
-                {errors.genre && (
-                  <span className="text-red-500 text-xs mt-1">
-                    {errors.genre.message}
-                  </span>
-                )}
-              </div>
-              <div className="flex flex-col w-full">
-                <div className="flex justify-between items-center mb-1">
-                  <label htmlFor="ki" className="text-sm text-white/80">
-                    Ki Base
-                  </label>
-                  <span className="text-orange-500 font-mono font-bold">
-                    {Number(ki).toLocaleString()}
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  id="ki"
-                  min="0"
-                  max="100000000"
-                  step="1000"
-                  {...register("ki", { valueAsNumber: true })}
-                  className="w-full h-2 bg-black/40 rounded-lg appearance-none cursor-pointer accent-orange-500"
-                />
-                {errors.ki && (
-                  <span className="text-red-500 text-xs mt-1">
-                    {errors.ki.message}
-                  </span>
-                )}
-              </div>
-              <div className="flex flex-col w-full">
-                <label htmlFor="desc" className="mb-1 text-sm  text-white/80">
-                  Descripción del personaje
-                </label>
-                <textarea
-                  name="desc"
-                  id="desc"
-                  {...register("desc")}
-                  className="bg-black/50 rounded-md py-3 px-4"
-                  placeholder="Ingrese descripción del personaje ..."
-                  rows={5}
-                  cols={1}
-                ></textarea>
-                {errors.desc && (
-                  <span className="text-red-500 text-xs mt-1">
-                    {errors.desc.message}
-                  </span>
-                )}
-              </div>
-              <button
-                type="submit"
-                className="mt-2 p-4  rounded-2xl bg-white text-black hover:text-white hover:bg-orange-500 active:scale-95 transition-transform duration-200"
-              >
-                Enviar
-              </button>
-            </div>
-          </form>
-        </div>
-      </main>
-    </div>
-  );
+            </main >
+        </div >
+    );
 };
