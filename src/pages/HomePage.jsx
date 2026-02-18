@@ -1,19 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCharactersAction } from "../actions/get-characters.action";
+
 import { CharacterGrid } from "../components/CharacterGrid";
 import { StatsGrid } from "../components/StatsGrid";
 import { Nav } from "../components/Nav";
+import { getCharactersAction } from "../actions/get-characters.action";
+import { useSearchParams } from "react-router";
+import { Pagination } from "../components/Pagination";
 
 export const HomePage = () => {
-  // const [searchTerm, setSearchTerm] = useState('')
 
-  // const handleSearch = (e) => {
-  //     setSearchTerm(e.target.value)
-  // }
+  const [searchParams] = useSearchParams();
+
+  const page = searchParams.get('page') ?? '1';
+  const limit = searchParams.get('limit') ?? '8';
 
   const { data: characters, isLoading } = useQuery({
-    queryKey: ["db-characters"],
-    queryFn: getCharactersAction,
+    queryKey: ['db-characters', { page, limit }],
+    queryFn: () => getCharactersAction(+page, +limit),
     staleTime: 1000 * 60 * 5,
   });
 
@@ -35,8 +38,9 @@ export const HomePage = () => {
           </h2>
         </div>
 
-        <CharacterGrid characters={characters} isLoading={isLoading} />
+        <CharacterGrid characters={characters?.items} isLoading={isLoading} />
       </main>
+      <Pagination totalPages={characters?.meta.totalPages} />
     </div>
   );
 };
