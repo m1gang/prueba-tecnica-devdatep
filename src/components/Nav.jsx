@@ -5,7 +5,7 @@ import { NavLink } from "react-router";
 export const Nav = () => {
   return (
     <div>
-      <nav className="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-gray-200 dark:border-white/10">
+      <nav className="fixed w-full top-0 z-12 backdrop-blur-3xl  border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex justify-center items-center gap-5">
@@ -24,7 +24,7 @@ export const Nav = () => {
                 </NavLink>
                 <NavLink
                   className={({ isActive }) => isActive && "active"}
-                  to="/planetas"
+                  to="/planets"
                 >
                   Planetas
                 </NavLink>
@@ -33,6 +33,12 @@ export const Nav = () => {
                   to="/search"
                 >
                   Búsqueda
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) => isActive && "active"}
+                  to="/suggest"
+                >
+                  Sugerencia
                 </NavLink>
               </div>
             </div>
