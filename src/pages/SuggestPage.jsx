@@ -50,12 +50,12 @@ export const SuggestPage = () => {
                                     title: "Datos enviados correctamente",
                                     description: "Gracias por su sugerencia",
                                     fill: "white",
-                                    icon: <CheckSymbol className="fill-orange-500" />,
+
                                     styles: {
-                                        title: "text-orange-500!",
+                                        title: "text-black!",
                                         description: "text-black/75!",
-                                        badge: "bg-orange-500/20!",
-                                        button: "bg-orange-500/10! hover:bg-orange-500/15!",
+                                        badge: "bg-green-500/10!",
+                                        button: "bg-green-200/10! hover:bg-green-500/15!",
                                     },
                                 });
                                 reset();
