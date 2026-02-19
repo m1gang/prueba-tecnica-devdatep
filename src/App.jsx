@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      <Toaster position="top-center" />
+      <Toaster position="top-right" />
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={appRouter} />
         <ReactQueryDevtools initialIsOpen={false} />

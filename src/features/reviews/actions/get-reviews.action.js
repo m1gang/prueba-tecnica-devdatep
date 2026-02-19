@@ -25,10 +25,11 @@ export const getReviewsAction = async (characterId) => {
             characterId: post.userId,
             rating: Math.floor(Math.random() * 5) + 1,
             author: 'Usuario Anónimo',
+            createdAt: new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000).toISOString(),
             isLocal: false,
         }));
 
     const allReviews = [...localReviews, ...apiReviews];
 
-    return allReviews.sort((a, b) => b.id - a.id);
+    return allReviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 };

@@ -1,12 +1,8 @@
 import z from "zod";
 
 export const reviewSchema = z.object({
-    title: z.string()
-        .min(5, { message: "El título debe tener al menos 5 caracteres" })
-        .max(100, { message: "El título no puede exceder 100 caracteres" }),
-    
     body: z.string()
-        .min(20, { message: "La reseña debe tener al menos 20 caracteres" })
+        .min(10, { message: "La reseña debe tener al menos 10 caracteres" })
         .max(500, { message: "La reseña no puede exceder 500 caracteres" }),
     
     rating: z.number()
