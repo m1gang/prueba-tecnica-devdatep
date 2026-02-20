@@ -37,17 +37,17 @@ export const saveLocalReview = (review) => {
 export const updateLocalReview = (id, updates) => {
     const reviews = getLocalReviews();
     const index = reviews.findIndex(r => r.id === id);
-    
+
     if (index !== -1) {
         reviews[index] = { ...reviews[index], ...updates };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
         return reviews[index];
     }
-    
+
     const updatedReviews = getUpdatedReviews();
     updatedReviews[id] = updates;
     localStorage.setItem(UPDATED_KEY, JSON.stringify(updatedReviews));
-    
+
     return null;
 };
 
@@ -69,7 +69,7 @@ export const deleteLocalReview = (id) => {
         deleted.push(id);
         localStorage.setItem(DELETED_KEY, JSON.stringify(deleted));
     }
-    
+
     const updatedReviews = getUpdatedReviews();
     delete updatedReviews[id];
     localStorage.setItem(UPDATED_KEY, JSON.stringify(updatedReviews));

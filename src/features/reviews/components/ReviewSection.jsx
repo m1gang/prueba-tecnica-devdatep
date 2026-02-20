@@ -6,7 +6,7 @@ import { useDeleteReview } from '../hooks/useDeleteReview';
 import { ReviewList } from './ReviewList';
 import { ReviewForm } from './ReviewForm';
 
-export const ReviewSection = ({ characterId }) => {
+export const ReviewSection = ({ characterId, characterName, styles }) => {
     const [showForm, setShowForm] = useState(false);
     const [editingReview, setEditingReview] = useState(null);
 
@@ -56,8 +56,9 @@ export const ReviewSection = ({ characterId }) => {
     return (
         <section className="border-t border-neutral-200 dark:border-neutral-800 pt-10">
             <div className="flex items-center gap-3 mb-8">
-                <h3 className="text-2xl font-display font-black text-neutral-900 dark:text-white uppercase tracking-tight">
-                    Reseñas del personaje
+                <h3 className="text-2xl font-display  text-neutral-900 dark:text-white uppercase tracking-tight">
+                    Reseñas sobre
+                    <span className={`text-3xl font-black pl-2 ${styles.textSolid}`}>{characterName}</span>
                 </h3>
                 <div className="h-px flex-1 bg-neutral-200 dark:bg-neutral-800"></div>
             </div>
@@ -76,7 +77,7 @@ export const ReviewSection = ({ characterId }) => {
             ) : (
                 <button
                     onClick={() => setShowForm(true)}
-                    className="mb-6 flex items-center gap-2 text-primary hover:text-orange-600 font-semibold transition-colors"
+                    className={`mb-6 flex items-center gap-2 ${styles.textSolid} ${styles.bgTransparent} p-3 rounded-2xl hover:text-orange-400 hover:border font-semibold transition-colors`}
                 >
                     <span className="material-icons">add</span>
                     Escribir una reseña

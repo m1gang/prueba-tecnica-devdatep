@@ -92,7 +92,7 @@ export const ReviewForm = ({ onSubmit, onCancel, defaultValues, isEditing = fals
                         type="submit"
                         className="bg-primary hover:bg-orange-600 text-white px-6 py-2.5 rounded-lg font-bold text-sm uppercase tracking-wider transition-all shadow-lg shadow-primary/20"
                     >
-                        {isEditing ? 'Actualizar' : 'Post Review'}
+                        {isEditing ? 'Actualizar' : 'Reseña'}
                     </button>
                 </div>
             </form>
