@@ -192,7 +192,7 @@ export const CharacterPage = () => {
                         )}
                     </div>
 
-                    <ReviewSection characterId={character.id} characterName={character.name} />
+                    <ReviewSection characterId={character.id} characterName={character.name} styles={styles} />
                 </section>
             </main>
         </>
