@@ -3,7 +3,7 @@
 Aplicación SPA para explorar personajes y planetas del universo Dragon Ball, con sistema de reseñas integrado.
 
 ## Demo
-
+[Demo de la prueba técnica](https://candid-hamster-de64c4.netlify.app/)
 La aplicación permite visualizar personajes, planetas, buscar y escribir reseñas para cada personaje.
 
 ## Stack Tecnológico
