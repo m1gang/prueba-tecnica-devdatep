@@ -1,9 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
-import { getPlanetsAction } from '../actions/get-planets.action';
 import { PlanetGrid } from '../components/PlanetGrid';
 import { Pagination } from '../components/Pagination';
 import { useSearchParams } from 'react-router';
 import { StatsGridPlanets } from '../components/StatsGridPlanets';
+import { usePlanets } from '../hooks/usePlanets';
 
 export const PlanetPage = () => {
     const [searchParams] = useSearchParams();
@@ -11,24 +10,15 @@ export const PlanetPage = () => {
     const page = searchParams.get('page') ?? '1';
     const limit = searchParams.get('limit') ?? '8';
 
-    const { data: planets } = useQuery({
-        queryKey: ['planets', { page, limit }],
-        queryFn: () => getPlanetsAction(page, limit),
-        staleTime: 1000 * 60 * 5,
-    });
-
-    console.log(planets);
-
+    const { data: planets, isLoading } = usePlanets(page, limit);
 
     return (
         <div className="bg-background-light dark:bg-background-dark min-h-screen">
-
             <div className="flex justify-center items-center gap-5">
                 <h1 className="mt-5 text-center text-5xl font-clash font-black pb-5">
                     Todos los planetas
                 </h1>
             </div>
-
 
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
                 <StatsGridPlanets data={planets?.meta} />
@@ -39,9 +29,9 @@ export const PlanetPage = () => {
                         Planetas
                     </h2>
                 </div>
-                <PlanetGrid planets={planets?.items} />
+                <PlanetGrid planets={planets?.items} isLoading={isLoading} />
             </main>
-            <Pagination totalPages={planets?.meta.totalPages} />
+            <Pagination totalPages={planets?.meta?.totalPages} />
         </div>
-    )
-}
+    );
+};

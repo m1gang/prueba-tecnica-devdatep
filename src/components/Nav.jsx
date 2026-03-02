@@ -20,7 +20,7 @@ export const Nav = () => {
                   className={({ isActive }) => isActive && "active"}
                   to="/"
                 >
-                  Inicio
+                  Personajes
                 </NavLink>
                 <NavLink
                   className={({ isActive }) => isActive && "active"}
